@@ -1,101 +1,119 @@
+
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import { useInventory } from "./hooks/inventory";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const {addCardToInventory} = useInventory()
+  const [rolledCard, setRolledCard] = useState(
+    {
+      id: 0,
+      name: '',
+      rarity: 0,
+      imgSrc: ''
+    }, 
+  )
+  const cards = [
+  {
+    id: 1,
+    name: 'Bandit',
+    rarity: 0.9,
+    imgSrc:'https://static.wikia.nocookie.net/anime-card-battle/images/2/24/Bandit_norm.png/revision/latest?cb=20240818184819'
+  }, 
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  {
+    id: 2,
+    name: 'Pirate',
+    rarity: 0.8,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/b/bf/Pirate_Norm.png/revision/latest?cb=20240818185032'
+  },
+  {
+    id: 3,
+    name: 'Green Fiend',
+    rarity: 0.7,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/8/8e/Green_Fiend_Norm.png/revision/latest?cb=20240818185403 '
+  },
+  {
+    id: 4,
+    name: 'Slime',
+    rarity: 0.3,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/7/75/Slime_Norm.png/revision/latest?cb=20240806000545'
+  },
+  {
+    id: 5,
+    name: 'Shade',
+    rarity: 0.1,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/9/99/Shade.jpg/revision/latest?cb=20240818233215'
+  },
+  {
+    id: 6,
+    name: 'Prince',
+    rarity: 0.085,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/1/1c/Prince_Norm.png/revision/latest?cb=20240806002253'
+  },
+  {
+    id: 7,
+    name: 'Pirate Hunter',
+    rarity: 0.065,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/b/b6/PirateHunter.jpg/revision/latest?cb=20240818233310'
+  },
+  {
+    id: 8,
+    name: 'Wild Gon',
+    rarity: 0.05,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/6/65/WildChild.jpg/revision/latest?cb=20240818233351'
+  },
+  {
+    id: 9,
+    name: 'Substitute Reaper',
+    rarity: 0.01,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/6/6b/SubstituteReaper.png/revision/latest?cb=20240818233437'
+  },
+  {
+    id: 10,
+    name: 'Knucklehead Ninja',
+    rarity: 0.009,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/9/9c/KnuckleheadNinja.png/revision/latest?cb=20240906141318'
+  },
+  {
+    id: 11,
+    name: 'Rubber Boy',
+    rarity: 0.007,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/5/5f/RubberBoy.png/revision/latest?cb=20240818233622'
+  },
+ {
+    id: 12,
+    name: 'Nail Master',
+    rarity: 0.0055,
+    imgSrc: 'https://static.wikia.nocookie.net/anime-card-battle/images/6/64/NailMaster.png/revision/latest?cb=20240818233709'
+  },
+ 
+  ]
+
+  const makeRoll = (luck: number) => {
+    const weight = (cards) => {
+      return [].concat(
+        ...cards.map((card: { rarity: number; }) => {
+          const adjustedRarity = card.rarity * (1 + (1 - card.rarity) * luck); // Aumenta a raridade com base na "luck"
+          return Array(Math.ceil(adjustedRarity * 100)).fill(card);
+        })
+      );
+    };
+    const weighted = weight(cards);
+    const cardRolled = weighted[Math.floor((Math.random()) * weighted.length)]
+    addCardToInventory(cardRolled)
+    setRolledCard(cardRolled)
+
+  }
+
+  return (
+    <div className="flex justify-center h-screen content-center flex-col">
+      <div className="flex self-center">{rolledCard.name}</div>
+      {rolledCard.imgSrc !== '' && (<Image src={rolledCard.imgSrc} width={500} height={800} alt={rolledCard.name}/>)}
+      
+      <button className="bg-gray-500 hover:bg-gray-700 active:bg-gray-900" onClick={() => makeRoll(0)}>Roll</button>
     </div>
   );
 }
