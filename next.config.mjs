@@ -1,15 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        remotePatterns: [
-            {
-              protocol: "https",
-              hostname: "static.wikia.nocookie.net",
-              port: "",
-              pathname: "/anime-card-battle/images/**",
-            },
-          ],
-    }
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "static.wikia.nocookie.net",
+        port: "",
+        pathname: "/anime-card-battle/images/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
